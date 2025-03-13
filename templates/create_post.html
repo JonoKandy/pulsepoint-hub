@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Create New Post{% endblock %}
+{% block content %}
+    <h1>Create New Opinion Post</h1>
+    <form method="POST" class="mt-4">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+        <div class="mb-3">
+            <label for="subtitle" class="form-label">Subtitle</label>
+            <input type="text" class="form-control" id="subtitle" name="subtitle" required>
+        </div>
+        <div class="mb-3">
+            <label for="author" class="form-label">Author Name</label>
+            <input type="text" class="form-control" id="author" name="author" required>
+        </div>
+        <div class="mb-3">
+            <label for="content" class="form-label">Content</label>
+            <textarea class="form-control" id="content" name="content" rows="10" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Publish Post</button>
+    </form>
+{% endblock %}
