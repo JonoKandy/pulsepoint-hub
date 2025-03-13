@@ -7,7 +7,7 @@
             <h5 class="card-subtitle mb-3 text-muted">{{ post.subtitle }}</h5>
             <p class="text-muted">By {{ post.author }} | {{ post.date_posted.strftime('%B %d, %Y') }}</p>
             <div class="card-text mt-4">
-                {{ post.content | safe }}
+                {{ post.content_html | safe }}
             </div>
         </div>
     </div>

@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 from database import db, Post, Comment
 from datetime import datetime
 from functools import wraps
+import markdown  # Added for Markdown support
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
@@ -29,6 +30,9 @@ def login_required(f):
 @app.route('/')
 def index():
     posts = Post.query.order_by(Post.date_posted.desc()).all()
+    # Convert content to HTML for preview
+    for post in posts:
+        post.content_preview = markdown.markdown(post.content, extensions=['nl2br'])[:150]  # Added nl2br extension
     return render_template('index.html', posts=posts)
 
 @app.route('/post/<int:post_id>', methods=['GET', 'POST'])
@@ -51,6 +55,8 @@ def post(post_id):
         flash('Comment added successfully!', 'success')
         return redirect(url_for('post', post_id=post_id))
     
+    # Convert post content to HTML with Markdown, preserving newlines
+    post.content_html = markdown.markdown(post.content, extensions=['nl2br'])  # Added nl2br extension
     comments = Comment.query.filter_by(post_id=post_id).order_by(Comment.date_posted.asc()).all()
     return render_template('post.html', post=post, comments=comments)
 

@@ -35,3 +35,23 @@ footer {
     color: #ffffff;
     text-decoration: none;
 }
+
+/* Updated for Markdown formatting and spacing */
+.card-text p {
+    margin-bottom: 1.5em;  /* Increased spacing between paragraphs */
+    line-height: 1.8;     /* Improved readability */
+}
+
+.card-text h1, .card-text h2, .card-text h3, .card-text h4, .card-text h5, .card-text h6 {
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
+}
+
+.card-text h2 {
+    font-size: 1.5rem;
+}
+
+/* Ensure content preview has proper spacing */
+.card-text {
+    white-space: pre-wrap;  /* Preserves whitespace and wraps text */
+}
